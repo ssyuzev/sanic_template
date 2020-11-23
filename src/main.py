@@ -1,7 +1,9 @@
 from sanic import Sanic
 from databases import Database
 from environs import Env
+
 from src.routes import setup_routes
+from src.middlewares import setup_middlewares
 from src.settings import Settings
 
 
@@ -27,6 +29,7 @@ def init():
     app.config.from_object(Settings)
     setup_database()
     setup_routes(app)
+    setup_middlewares(app)
 
     app.run(
         host=app.config.HOST,

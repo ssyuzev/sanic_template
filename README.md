@@ -18,7 +18,8 @@ Save `.env.example`  as a `.env` file.
 ## Run migrations
 
 ```
-fab init_db
+make revision
+make upgrade
 ```
 
 ## Batteries:
