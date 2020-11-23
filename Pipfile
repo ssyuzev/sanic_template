@@ -1,0 +1,19 @@
+[[source]]
+name = "pypi"
+url = "https://pypi.org/simple"
+verify_ssl = true
+
+[dev-packages]
+
+[packages]
+sanic = "*"            # https://sanic.readthedocs.io/en/latest/
+secure = "*"           # https://github.com/TypeError/secure.py
+environs = "*"         # https://github.com/sloria/environs
+sanic-envconfig = "*"  # https://github.com/jamesstidard/sanic-envconfig
+psycopg2-binary = "*"
+databases = {extras = ["postgresql"], version = "*"}  # https://github.com/encode/databases
+project = {editable = true, path = "."}
+alembic = "*"
+
+[requires]
+python_version = "3.9"

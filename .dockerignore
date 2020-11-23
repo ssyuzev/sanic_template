@@ -1,0 +1,7 @@
+.git
+dockerfiles
+dcoker-compose*
+*cache*
+__pycache__
+.pytest_cache
+.venv

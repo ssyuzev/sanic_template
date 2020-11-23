@@ -1,0 +1,44 @@
+version: '3.7'
+services:
+  db:
+    image: postgres:12-alpine
+    restart: always
+    env_file:
+      - ./.env
+    volumes:
+      - ./data/postgres/data:/var/lib/postgresql/data
+    ports:
+      - "127.0.0.1:5432:5432"
+    networks:
+      - local
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    command: pipenv run python -m src
+    restart: on-failure
+    env_file:
+      - ./.env
+    volumes:
+      - ./alembic:/app/alembic
+      - ./alembic.ini:/app/alembic.ini
+      - ./src:/app/src
+    ports:
+      - "8000:8000"
+    depends_on: 
+      - db
+    networks:
+      - local
+  adminer:
+    image: adminer
+    restart: always
+    ports:
+      - "127.0.0.1:8080:8080"
+    depends_on:
+      - db
+    networks:
+      - local
+
+networks:
+  local:
+    driver: bridge
